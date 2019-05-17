@@ -23,7 +23,7 @@ public class Recipe {
     private Byte[] image;
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
 
 
