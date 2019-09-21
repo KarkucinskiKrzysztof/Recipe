@@ -1,2 +1,1 @@
-# Recipe
-Spring 5 training
+# Spring Boot Recipe Application

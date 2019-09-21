@@ -2,31 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>List of Recipes</title>
+    <title>Recipe Home</title>
 </head>
 <body>
+<h1>My Recipes!</h1>
 
-<h2 th:text="'List of Recipes'">Owners List</h2>
-
-<table class="table table-striped">
-    <thead>
+<table>
     <tr>
-        <th style="width: 150px;">Id</th>
-        <th style="width: 150px;">Description</th>
-        <th style="width: 150px;">Cook Time</th>
-        <th style="width: 150px;">Prep Time</th>
-        <th style="width: 150px;">Difficulty</th>
+        <th>ID</th>
+        <th>Description</th>
     </tr>
-    </thead>
-    <tbody>
     <tr th:each="recipe : ${recipes}">
-        <td th:text="${recipe.id}">1</td>
-        <td th:text="${recipe.description}">Joe</td>
-        <td th:text="${recipe.cookTime}">Buck</td>
-        <td th:text="${recipe.prepTime}">Buck</td>
-        <td th:text="${recipe.difficulty}">Buck</td>
+        <td th:text="${recipe.id}">123</td>
+        <td th:text="${recipe.description}">Tasty Goodnees</td>
     </tr>
-    </tbody>
 </table>
 </body>
 </html>
