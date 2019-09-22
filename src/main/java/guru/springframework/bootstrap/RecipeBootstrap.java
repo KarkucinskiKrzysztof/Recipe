@@ -4,8 +4,10 @@ import guru.springframework.domain.*;
 import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -16,6 +18,7 @@ import java.util.Optional;
 /**
  * Created by jt on 6/13/17.
  */
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -30,8 +33,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transient
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Data load.");
     }
 
     private List<Recipe> getRecipes() {
