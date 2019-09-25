@@ -15,15 +15,15 @@ import java.util.Set;
 
 public class RecipeServiceImplTest {
 
-    private RecipeServiceImpl recipeService;
+    private RecipeServiceImpl recipeService;  // impl bo testujemy dokładnie ten a nie zaden inny servis
     @Mock
     RecipeRepository recipeRepository;
 
     @Before
     public void setUp() {
 
-        MockitoAnnotations.initMocks(this);  // daj mi mock recipeRepository
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        MockitoAnnotations.initMocks(this);  // daj mi mock recipeRepository (lub wiecej jeśli sa nne rzeczy sa zamokowane)
+        recipeService = new RecipeServiceImpl(recipeRepository); // proste tworzenie obiektu RecipeServiceImpl zwykły konstruktor
     }
 
 
