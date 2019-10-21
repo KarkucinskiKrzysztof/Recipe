@@ -10,11 +10,13 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class RecipeServiceImplTest {
 
-    private RecipeServiceImpl recipeService;  // impl bo testujemy dokładnie ten a nie zaden inny servis
+    RecipeServiceImpl recipeService;  // impl bo testujemy dokładnie ten a nie zaden inny servis
+
     @Mock
     RecipeRepository recipeRepository;
 
@@ -23,6 +25,33 @@ public class RecipeServiceImplTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);  // daj mi mock recipeRepository (lub wiecej jeśli sa nne rzeczy sa zamokowane)
         recipeService = new RecipeServiceImpl(recipeRepository); // proste tworzenie obiektu RecipeServiceImpl zwykły konstruktor
+    }
+
+    @Test
+    public void getRecipesByIdTest() throws Exception{
+
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
+
+        // to nie jest sprawdzenie zachowania ale określenie jaki obikt repozytory ma zwracać przy konkretnym wywołaniu
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.findRecipesById(1l);
+        Recipe recipeReturned1 = recipeService.findRecipesById(1l);
+        Recipe recipeReturned3 = recipeService.findRecipesById(1l);
+
+        Set<Recipe> sa = new HashSet<>();
+        sa = recipeService.getRecipes();
+        assertNotNull("Null recipe returned", recipeReturned);
+
+        // zlicza ile razy dana  metoda z mocka recipeRepository została wywołana przez metode z servisu
+        verify(recipeRepository, times(3)).findById(anyLong());
+        verify(recipeRepository, times(1)).findAll();
+        verify(recipeRepository, never()).deleteAll();
+
+
     }
 
     @Test
