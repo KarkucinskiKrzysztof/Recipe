@@ -19,6 +19,8 @@ public class RecipeController {
     public String getRecipe(Model model,
                             @PathVariable ("id") long id){
         model.addAttribute("recipe", recipeService.findRecipesById(Long.valueOf(id)));
+        model.addAttribute("categories", recipeService.findRecipesById(id).getCategories());
+        model.addAttribute("note", recipeService.findRecipesById(id).getNotes());
         return "recipe/show";
     }
 }
