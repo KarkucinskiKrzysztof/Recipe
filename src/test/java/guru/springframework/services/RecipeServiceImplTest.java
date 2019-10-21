@@ -18,6 +18,7 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);  // daj mi mock recipeRepository (lub wiecej jeśli sa nne rzeczy sa zamokowane)
@@ -25,7 +26,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipes()   {
+    public void getRecipes() throws Exception {
 
         Recipe recipe = new Recipe();
         HashSet<Recipe> recipesData = new HashSet<>();
@@ -37,4 +38,5 @@ public class RecipeServiceImplTest {
         assertNotEquals(recipes.size(),0);
         verify(recipeRepository, times(1)).findAll();    // ile razy zostało wywołane recipeRepositories ?
     }
+
 }

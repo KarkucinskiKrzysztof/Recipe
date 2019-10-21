@@ -9,8 +9,8 @@ import java.util.Set;
 /**
  * Created by jt on 6/13/17.
  */
-@Entity
 @Data
+@Entity
 public class Recipe {
 
     @Id
@@ -45,7 +45,6 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-
     public void setNotes(Notes notes) {
         this.notes = notes;
         notes.setRecipe(this);
@@ -56,6 +55,4 @@ public class Recipe {
         this.ingredients.add(ingredient);
         return this;
     }
-
-
 }
