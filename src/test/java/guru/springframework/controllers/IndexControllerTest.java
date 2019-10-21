@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,12 +38,10 @@ public class IndexControllerTest {
     @Test
     public void testMocMVC() throws Exception {
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
     }
-
 
     @Test
     public void getIndexPage() {
@@ -57,12 +54,12 @@ public class IndexControllerTest {
 
         when(recipeService.getRecipes()).thenReturn(recipeSet);
 
-        ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);           // ciekawe ArgumentCaptor jako nazwa
+        ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);   // ciekawe ArgumentCaptor jako nazwa
 
         // then
         assertEquals(controller.getIndexPage(model),"index");
         verify(recipeService,times(1)).getRecipes();
-        verify(model,times(1)).addAttribute(eq("recipes"),argumentCaptor.capture());   // anySet() jeśli wywalimy wszytko z argumentarorem
+        verify(model,times(1)).addAttribute(eq("recipes"),argumentCaptor.capture());   // mozna dać anySet() zamiast argumentCaptor.capture() jeśli wywalimy wszytko z argumentarorem
         Set<Recipe> setInController = argumentCaptor.getValue();
         assertEquals(2,setInController.size());
     }
