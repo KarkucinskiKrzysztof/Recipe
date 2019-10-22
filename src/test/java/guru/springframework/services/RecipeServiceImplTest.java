@@ -46,9 +46,9 @@ public class RecipeServiceImplTest {
         // to nie jest sprawdzenie zachowania ale określenie jaki obikt repozytory ma zwracać przy konkretnym wywołaniu
         when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
 
-        Recipe recipeReturned = recipeService.findRecipesById(1l);
-        Recipe recipeReturned1 = recipeService.findRecipesById(1l);
-        Recipe recipeReturned3 = recipeService.findRecipesById(1l);
+        Recipe recipeReturned = recipeService.findById(1l);
+        Recipe recipeReturned1 = recipeService.findById(1l);
+        Recipe recipeReturned3 = recipeService.findById(1l);
 
         Set<Recipe> sa = new HashSet<>();
         sa = recipeService.getRecipes();
