@@ -18,9 +18,6 @@ public class RecipeControllerTest {
     @Mock
     RecipeService recipeService;
 
-//    @InjectMocks
-//    RecipeController controller;
-
     RecipeController controller;
 
     @Before
